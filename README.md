@@ -40,3 +40,73 @@ To create a simple, dependency-free Windows backup solution that can be deployed
 
 - EXE packaging for secure deployment
 
+
+
+=====================SAMPLE CODE ========================
+
+
+@echo off
+
+title SmartBackup Pro
+
+color 0A
+
+ 
+
+echo ======================================
+
+echo         SMARTBACKUP PRO
+
+echo ======================================
+
+ 
+
+set /p source=Enter Source Folder Path:
+
+set /p destination=Enter Destination Folder Path:
+
+ 
+
+echo.
+
+echo Select Backup Mode:
+
+echo 1 - Full Backup
+
+echo 2 - Mirror Backup
+
+echo 3 - Incremental Backup
+
+set /p mode=Enter choice (1-3):
+
+ 
+
+if "%mode%"=="1" (
+
+    robocopy "%source%" "%destination%" /E /COPYALL /R:2 /W:2 /LOG:backup.log
+
+)
+
+ 
+
+if "%mode%"=="2" (
+
+    robocopy "%source%" "%destination%" /MIR /R:2 /W:2 /LOG:backup.log
+
+)
+
+ 
+
+if "%mode%"=="3" (
+
+    robocopy "%source%" "%destination%" /E /XO /R:2 /W:2 /LOG:backup.log
+
+)
+
+ 
+
+echo Backup Completed!
+
+pause
+
+==============================END=======================================
